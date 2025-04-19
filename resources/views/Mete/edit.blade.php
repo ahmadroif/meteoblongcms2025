@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Edit Data Penjualan</h1>
-        <form action="{{ route('mete.update', $sale['id']) }}" method="POST">
+        <form action="{{ route('meteoblong.update', $sale['id']) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">

@@ -8,6 +8,6 @@
         <p><strong>Quantity:</strong> {{ $sale['quantity'] }}</p>
         <p><strong>Total Price:</strong> {{ $sale['total_price'] }}</p>
         <p><strong>Order Date:</strong> {{ $sale['order_date'] }}</p>
-        <a href="{{ route('mete.index') }}" class="btn btn-secondary">Kembali</a>
+        <a href="{{ route('meteoblong.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
 @endsection

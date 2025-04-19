@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Daftar Penjualan</h1>
-        <a href="{{ route('mete.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+        <a href="{{ route('meteoblong.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
@@ -29,9 +29,9 @@
                     <td>{{ $sale['total_price'] }}</td>
                     <td>{{ $sale['order_date'] }}</td>
                     <td>
-                        <a href="{{ route('mete.show', $sale['id']) }}" class="btn btn-info btn-sm">Lihat</a>
-                        <a href="{{ route('mete.edit', $sale['id']) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('mete.destroy', $sale['id']) }}" method="POST" style="display:inline-block">
+                        <a href="{{ route('meteoblong.show', $sale['id']) }}" class="btn btn-info btn-sm">Lihat</a>
+                        <a href="{{ route('meteoblong.edit', $sale['id']) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('meteoblong.destroy', $sale['id']) }}" method="POST" style="display:inline-block">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus?')">Hapus</button>

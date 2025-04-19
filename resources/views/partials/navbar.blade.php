@@ -1,4 +1,4 @@
 <nav>
-    <a href="{{ route('mete.index') }}">Home</a>
+    <a href="{{ route('meteoblong.index') }}">Home</a>
 </nav>
 <hr>

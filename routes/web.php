@@ -2,4 +2,4 @@
 
 use App\Http\Controllers\MeteController;
 
-Route::resource('mete', MeteController::class);
+Route::resource('meteoblong', MeteController::class);

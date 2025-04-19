@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Tambah Data Penjualan</h1>
-        <form action="{{ route('mete.store') }}" method="POST">
+        <form action="{{ route('meteoblong.store') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label>Customer</label>
