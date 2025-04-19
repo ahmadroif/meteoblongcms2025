@@ -1,30 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Penjualan Baru</title>
-</head>
-<body>
-    <h1>Tambah Penjualan Baru</h1>
+@extends('layouts.app')
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-<form action="{{ route('meteoblong.store') }}" method="POST">
-    @csrf
-    <input type="text" name="customer" placeholder="Nama Pelanggan" required>
-    <input type="text" name="product" placeholder="Nama Produk" required>
-    <input type="number" name="quantity" placeholder="Jumlah" min="1" required>
-    <input type="date" name="order_date" required>
-    <button type="submit">Simpan</button>
-</form>
-</body>
-</html>
+@section('content')
+    <div class="container">
+        <h1>Tambah Data Penjualan</h1>
+        <form action="{{ route('mete.store') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label>Customer</label>
+                <input type="text" name="customer" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Product</label>
+                <input type="text" name="product" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Quantity</label>
+                <input type="number" name="quantity" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Order Date</label>
+                <input type="date" name="order_date" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+    </div>
+@endsection

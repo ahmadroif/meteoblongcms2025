@@ -1,43 +1,45 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Daftar Penjualan</title>
-</head>
-<body>
-    <h1>Daftar Penjualan</h1>
-    <a href="{{ route('meteoblong.create') }}">Tambah Data</a>
-    
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Pelanggan</th>
-            <th>Produk</th>
-            <th>Jumlah</th>
-            <th>Total Harga</th>
-            <th>Aksi</th>
-        </tr>
-        @forelse ($sales as $sale)
-            <tr>
-                <td>{{ $sale['id'] }}</td>
-                <td>{{ $sale['customer'] }}</td>
-                <td>{{ $sale['product'] }}</td>
-                <td>{{ $sale['quantity'] }}</td>
-                <td>Rp {{ number_format($sale['total_price'], 0, ',', '.') }}</td>
-                <td>
-                    <a href="{{ route('meteoblong.show', $sale['id']) }}">Detail</a>
-                    <a href="{{ route('meteoblong.edit', $sale['id']) }}">Edit</a>
-                    <form action="{{ route('meteoblong.destroy', $sale['id']) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Hapus</button>
-                    </form>
-                </td>
-            </tr>
-        @empty
-            <tr>
-                <td colspan="6">Belum ada data</td>
-            </tr>
-        @endforelse
-    </table>
-</body>
-</html>
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <h1>Daftar Penjualan</h1>
+        <a href="{{ route('mete.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Order Date</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($sales as $sale)
+                <tr>
+                    <td>{{ $sale['id'] }}</td>
+                    <td>{{ $sale['customer'] }}</td>
+                    <td>{{ $sale['product'] }}</td>
+                    <td>{{ $sale['quantity'] }}</td>
+                    <td>{{ $sale['total_price'] }}</td>
+                    <td>{{ $sale['order_date'] }}</td>
+                    <td>
+                        <a href="{{ route('mete.show', $sale['id']) }}" class="btn btn-info btn-sm">Lihat</a>
+                        <a href="{{ route('mete.edit', $sale['id']) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('mete.destroy', $sale['id']) }}" method="POST" style="display:inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus?')">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection

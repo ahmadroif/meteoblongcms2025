@@ -1,5 +1,5 @@
 <?php
 
-use App\Http\Controllers\MeteoblongController;
+use App\Http\Controllers\MeteController;
 
-Route::resource('meteoblong', MeteoblongController::class);
+Route::resource('mete', MeteController::class);

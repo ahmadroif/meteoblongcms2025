@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Meteoblong;
 
-class MeteoblongController extends Controller
+class MeteController extends Controller
 {
     public function index()
     {
@@ -20,15 +20,8 @@ class MeteoblongController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'customer' => 'required',
-            'product' => 'required',
-            'quantity' => 'required|numeric|min:1',
-            'order_date' => 'required|date'
-        ]);
-
-        Meteoblong::create($data);
-        return redirect()->route('meteoblong.index');
+        Meteoblong::create($request->all());
+        return redirect()->route('mete.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function show($id)
@@ -45,20 +38,13 @@ class MeteoblongController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = $request->validate([
-            'customer' => 'required',
-            'product' => 'required',
-            'quantity' => 'required|numeric|min:1',
-            'order_date' => 'required|date'
-        ]);
-
-        Meteoblong::update($id, $data);
-        return redirect()->route('meteoblong.index');
+        Meteoblong::update($id, $request->all());
+        return redirect()->route('mete.index')->with('success', 'Data berhasil diperbarui!');
     }
 
     public function destroy($id)
     {
         Meteoblong::delete($id);
-        return redirect()->route('meteoblong.index');
+        return redirect()->route('mete.index')->with('success', 'Data berhasil dihapus!');
     }
 }
