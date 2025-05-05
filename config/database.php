@@ -35,6 +35,21 @@ return [
 
     'connections' => [
 
+        'oracle' => [
+            'driver'         => 'oracle',
+            'tns'            => env('DB_TNS', ''),
+            'host'           => env('DB_HOST', 'localhost'),
+            'port'           => env('DB_PORT', '1521'),
+            'service_name'   => env('DB_SERVICE_NAME', 'xepdb1'), // <- ini WAJIB untuk Oracle 18c/21c yang pakai PDB
+            'username'       => env('DB_USERNAME', 'mete'),
+            'password'       => env('DB_PASSWORD', 'oblong'),
+            'charset'        => 'AL32UTF8',
+            'prefix'         => '',
+            'prefix_schema'  => env('DB_SCHEMA_PREFIX', ''),
+            'edition'        => env('DB_EDITION', 'ora$base'),
+            'server_version' => env('DB_SERVER_VERSION', '11g'),
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
