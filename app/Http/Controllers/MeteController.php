@@ -20,15 +20,25 @@ class MeteController extends Controller
 
     public function store(Request $request)
     {
+        // Validasi input
+        $validated = $request->validate([
+            'customer' => 'required|string|max:100',
+            'product' => 'required|string|max:100',
+            'quantity' => 'required|integer|min:1',
+        ]);
+    
+        // Hitung total harga
         $pricePerItem = 50000;
-        $data = $request->except('_token');
-        $data['order_date'] = now();
-        $data['total_price'] = $data['quantity'] * $pricePerItem;
+        $validated['order_date'] = now();
+        $validated['total_price'] = $validated['quantity'] * $pricePerItem;
     
-        Meteoblong::create($data);
+        // Simpan ke database
+        Meteoblong::create($validated);
     
+        // Redirect kembali dengan pesan sukses
         return redirect()->back()->with('success', 'Data berhasil disimpan.');
     }
+    
     
 
     public function show($id)
